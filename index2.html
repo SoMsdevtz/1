@@ -1,0 +1,28 @@
+width="640" height="1000" frameborder="0" marginheight="0" marginwidt<!-- HTML code for embedding the Google Form -->
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeSEazfMgnLC4ivgcZcrUGDuAZyvNFL6ZfQ4vO_BLpNvrDv3A/viewform"  width="640" height="1000" frameborder="0" marginheight="0" marginwidth="0"  >Loading…</iframe>
+
+<!-- JavaScript code to add a countdown timer -->
+<script>
+  // Set the duration of the timer in seconds
+  var duration = 600; // 10 minutes
+  
+  // Get the embedded iframe element
+  var iframe = document.getElementsByTagName("iframe")[0];
+  
+  // Define a function to update the timer display
+  function updateTimer() {
+    var minutes = Math.floor(duration / 60);
+    var seconds = duration % 60;
+    var timer = "Time remaining: " + minutes + "m " + seconds + "s";
+    iframe.contentDocument.getElementById("timer").innerHTML = timer;
+    duration--;
+    if (duration < 0) {
+      clearInterval(intervalId);
+      // Redirect the user to another page when the time limit is up
+      window.location.href = "https://example.com/timeout";
+    }
+  }
+  
+  // Start the timer
+  var intervalId = setInterval(updateTimer, 1000);
+</script>
