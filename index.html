@@ -21,44 +21,34 @@
 		}
 	</style>
 </head>
-<body>
-	<div class="container text-center">
-		<h1 class="mb-4">Admin</h1>
-		<div class="row justify-content-center">
-			<div class="col-md-6 col-lg-4">
-				<form class="form-container">
-					<div class="form-group">
-						<label for="username">Username:</label>
-						<input type="text" class="form-control" id="username" name="username">
-					</div>
-					<div class="form-group">
-						<label for="password">Password:</label>
-						<input type="password" class="form-control" id="password" name="password">
-					</div>
-					<button type="submit" class="btn btn-primary" onclick="checkLogin()">Login</button>
-				</form>
-			</div>
-		</div>
-	</div>
-	
-	<!-- Bootstrap JS -->
-	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	>
-	
-	<!-- Custom JS -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Form</title>
 	<script type="text/javascript">
 		function checkLogin() {
 			var username = document.getElementById("username").value;
 			var password = document.getElementById("password").value;
 			
 			if(username === "ian" && password === "ian235") {
-				
-				window.location.href = "quiz.html"; // Redirect to success page
+				alert("Login successful!");
+				window.location.href = "success.html"; // Redirect to success page
 			} else {
 				alert("Incorrect username or password. Please try again.");
 			}
 		}
 	</script>
+</head>
+<body>
+	<h1>Login Form</h1>
+	<form>
+		<label for="username">Username:</label>
+		<input type="text" id="username" name="username"><br><br>
+		
+		<label for="password">Password:</label>
+		<input type="password" id="password" name="password"><br><br>
+		
+		<input type="button" value="Login" onclick="checkLogin()">
+	</form>
 </body>
 </html>
