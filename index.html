@@ -1,6 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
+		<style>
+		body {
+			background-color: #f5f5f5;
+			font-family: Arial, sans-serif;
+		}
+		h1 {
+			color: #333;
+			text-align: center;
+			margin-top: 50px;
+			margin-bottom: 30px;
+		}
+		.container {
+			width: 400px;
+			background-color: #fff;
+			border-radius: 10px;
+			box-shadow: 0px 0px 10px #999;
+			padding: 20px;
+			margin: 0 auto;
+		}
+		label {
+			display: block;
+			color: #555;
+			font-size: 14px;
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
+		input[type="text"],
+		input[type="password"] {
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 20px;
+			border: none;
+			border-radius: 5px;
+			box-shadow: 0px 0px 5px #ccc;
+			font-size: 14px;
+			color: #333;
+			background-color: #f7f7f7;
+			transition: box-shadow 0.2s ease-in-out;
+		}
+		input[type="text"]:focus,
+		input[type="password"]:focus {
+			outline: none;
+			box-shadow: 0px 0px 5px #6c757d;
+		}
+		input[type="submit"] {
+			display: block;
+			width: 100%;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			background-color: #4CAF50;
+			color: #fff;
+			font-size: 16px;
+			font-weight: bold;
+			cursor: pointer;
+		}
+		input[type="submit"]:hover {
+			background-color: #357a38;
+		}
+	</style>
+	
+	
+	
+	
 	<title>Login Form</title>
 	<script type="text/javascript">
 		function checkLogin() {
