@@ -1,5 +1,21 @@
 <!-- HTML code for embedding the Google Form -->
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeSEazfMgnLC4ivgcZcrUGDuAZyvNFL6ZfQ4vO_BLpNvrDv3A/viewform"  width="2240" height="1000" frameborder="0" marginheight="0" marginwidth="0"  >Loading…</iframe>
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeSEazfMgnLC4ivgcZcrUGDuAZyvNFL6ZfQ4vO_BLpNvrDv3A/viewform" frameborder="0" marginheight="0" marginwidth="0" allowfullscreen="true" allowpaymentrequest="true" loading="lazy"></iframe>
+
+<!-- CSS code to style the embedded Google Form -->
+<style>
+  /* Default style for the iframe */
+  iframe {
+    width: 100%;
+    height: 800px;
+  }
+  
+  /* Media query for mobile devices */
+  @media only screen and (max-width: 600px) {
+    iframe {
+      height: 600px;
+    }
+  }
+</style>
 
 <!-- JavaScript code to add a countdown timer -->
 <script>
@@ -24,5 +40,5 @@
   }
   
   // Start the timer
-  var intervalId = setInterval(updateTimer, 1000);
+  var intervalId = window.setInterval(updateTimer, 1000);
 </script>
