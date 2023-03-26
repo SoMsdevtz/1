@@ -47,18 +47,27 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	
 	<!-- Custom JS -->
-	<script>
+	
+
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Form</title>
+	<script type="text/javascript">
 		function checkLogin() {
 			var username = document.getElementById("username").value;
 			var password = document.getElementById("password").value;
 			
-			if(username === "admin" && password === "admin235") {
+			if(username === "ian" && password === "ian235") {
 				alert("Login successful!");
-				window.location.href = "quiz.html"; // Redirect to success page
+				window.location.href = "success.html"; // Redirect to success page
 			} else {
 				alert("Incorrect username or password. Please try again.");
 			}
 		}
 	</script>
-</body>
-</html>
+</head>
+<body>
+	
