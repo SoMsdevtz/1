@@ -1,117 +1,148 @@
 <!DOCTYPE html>
-<html>
-<head>
-		<style>
-		body {
-			background-color: #f5f5f5;
-			font-family: Arial, sans-serif;
-		}
-		h1 {
-			color: #333;
-			text-align: center;
-			margin-top: 50px;
-			margin-bottom: 30px;
-		}
-		.container {
-			width: 400px;
-			background-color: #fff;
-			border-radius: 10px;
-			box-shadow: 0px 0px 10px #999;
-			padding: 20px;
-			margin: 0 auto;
-		}
-		label {
-			display: block;
-			color: #555;
-			font-size: 14px;
-			font-weight: bold;
-			margin-bottom: 10px;
-		}
-		input[type="text"],
-		input[type="password"] {
-			width: 50%;
-			padding: 10px;
-			margin-bottom: 20px;
-			border: none;
-			border-radius: 5px;
-			box-shadow: 0px 0px 5px #ccc;
-			font-size: 14px;
-			color: #333;
-			background-color: #f7f7f7;
-			transition: box-shadow 0.2s ease-in-out;
-		}
-		input[type="text"]:focus,
-		input[type="password"]:focus {
-			outline: none;
-			box-shadow: 0px 0px 5px #6c757d;
-		}
-		input[type="submit"] {
-			display: block;
-			width: 100%;
-			padding: 10px;
-			border: none;
-			border-radius: 5px;
-			background-color: #4CAF50;
-			color: #fff;
-			font-size: 16px;
-			font-weight: bold;
-			cursor: pointer;
-		}
-		input[type="submit"]:hover {
-			background-color: #357a38;
-		}
-	</style>
-	
-	
-	
-	
-	<title>Login Form</title>
-	<script type="text/javascript">
-		function checkLogin() {
-			var username = document.getElementById("username").value;
-			var password = document.getElementById("password").value;
-			
-			if(username === "ian" && password === "ian235") {
-				alert("Login successful!");
-				window.location.href = "quiz.html"; // Redirect to success page
-			} else {
-				alert("Incorrect username or password. Please try again.");
-			}
-		}
-	</script>
-</head>
-<body>
-	<h1>Login Form</h1>
-	<form>
-		<label for="username">Username:</label>
-		<input type="text" id="username" name="username"><br><br>
-		
-		<label for="password">Password:</label>
-		<input type="password" id="password" name="password"><br><br>
-		
-		<input type="button" value="Login" onclick="checkLogin()">
-	</form><p>1.Be on time: The exam will start at the scheduled time, so please make sure you are ready and logged in on time.
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Send SMS</title>
+    <!-- ======= Styles ======= -->
+ 
+    <!-- ======= Bootstrap ======= -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Send SMS</h1>
+      
 
-<br>2.Duration of the exam: You will have a fixed amount of time to complete the exam, so manage your time wisely.
 
- <br>  3.Format of the exam: The exam may include different types of questions, such as multiple-choice or essay questions.
+ <form method="POST" action="">
+        <div class
+="form-group">
+<label for="name" class="form-label">Select a name:</label>
+<select name="name" id="name" class="form-control" required>
+<option value="">-- Select a name --</option>
+<?php
+         $file = fopen("FILES.csv", "r");
+         $headers = fgetcsv($file); // skip the header row
+         while (($row = fgetcsv($file)) !== FALSE) {
+           echo "<option value='" . $row[1] . "'>" . $row[1] . "</option>";
+         }
+         fclose($file);
+         ?>
+</select>
+</div>
+<div class="mb-3">
+<label for="phone" class="form-label">Phone number:</label>
+<input type="tel" name="phone" id="phone" class="form-control" required>
+</div>
 
-<br>    4.Use of resources: You will be informed beforehand if any resources are allowed during the exam. Make sure you understand what resources you are allowed to use.
+    <?php
+    if(isset($_POST['submit']) && isset($_POST['name'])){
+      echo "<div class='form-group'>";
+      echo "<label for='selected-name' class='form-label'>Selected name:</label>";
+      echo "<input type='text' id='selected-name' class='form-control' value='" . $_POST['name'] . "' disabled>";
+      echo "</div>";
+      echo "<div class='form-group'>";
+      echo "<label for='amount-due' class='form-label'>Amount left:</label>";
+      $filename = 'FILES.csv';
+      if (($handle = fopen($filename, 'r')) !== false) {
+          while (($data = fgetcsv($handle, 1000, ',')) !== false) {
+              if ($data[1] === $_POST['name']) {
+                  // Found the corresponding row, get the amount
+                  $amount = $data[6];
+                  echo "<input type='text' id='amount-due' class='form-control' value='Tsh" . $amount . "' disabled>";
 
-   <br>  5.Technical requirements: Make sure you have a reliable internet connection, a quiet environment, and any software or hardware required for the exam.
+                  break;
+              }
+          }
+          fclose($handle);
+      }
+      echo "</div>";
+    }
+    ?>
+    
+    <button type="submit" name="submit" class="btn btn-primary">Send SMS</button>
+  </form>
+</div>
 
-  <br>  6.Cheating prevention: Any form of cheating is strictly prohibited. Please review the rules and requirements before starting the exam.
-
- <br>   7.Feedback and grading: You will receive feedback on your performance and how your exam will be graded after the exam is graded.
-
- <br>   8.Contact information: In case of technical issues or questions, you can contact your instructor by email or other means of communication specified by your institution.
-	
-	
-</body>
+<!-- ======= Bootstrap ======= -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+  integrity="sha384-REvtCvKoSmT39c6nMn6T63Bl79fdgq3EQjka9XeqdQZi34/VlYwYDsqR47jJEqsd"
+  crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js"
+  integrity="sha384-JNQl4QFnX0ZWKqsLGZlMWRm/dmkhS1S+8WjIyexmGFCV7oDzQW5V8lL3MEp5VHu9"
+  crossorigin="anonymous"></script>
+  </body>
 </html>
+<?php
+if(isset($_POST['submit'])) {
+    // Retrieve phone number and name from the form
+    $phone = $_POST['phone'];
+    $name = $_POST['name'];
 
+    // Open the CSV file and search for the corresponding row
+    $filename = 'FILES.csv';
+    if (($handle = fopen($filename, 'r')) !== false) {
+        while (($data = fgetcsv($handle, 1000, ',')) !== false) {
+            if ($data[1] === $name) {
+                // Found the corresponding row, get the amount
+                $amount = $data[6];
 
+                // Construct the message with the amount and name
+         $message = "PEACE AND LOVE SCHOOL inapenda kukukumbusha  Mzazi/mlezi wa $name kuwa deni lililobakia ni Tsh$amount linapaswa kulipwa  kupitia account zetu za shule au wasiliana na mwasibu wa shule .";
 
-	
-	
-	
+                // Check if phone number starts with any of the specified prefixes
+                $allowed_prefixes = ['071', '065', '078', '069', '062', '073'];
+                $valid_number = false;
+
+                foreach ($allowed_prefixes as $prefix) {
+                    if (strpos($phone, $prefix) === 0) {
+                        $valid_number = true;
+                        break;
+                    }
+                }
+
+                // If phone number is valid, send SMS using API
+                if ($valid_number) {
+                    // Send the SMS using the Arkesel API
+                    $curl = curl_init();
+
+                    curl_setopt_array($curl, [
+                        CURLOPT_URL => 'https://sms.arkesel.com/api/v2/sms/send',
+                        CURLOPT_HTTPHEADER => ['api-key: OjFIbnB4TG9DT1Z5cnpxV1Y='],
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_ENCODING => '',
+                        CURLOPT_MAXREDIRS => 10,
+                        CURLOPT_TIMEOUT => 0,
+                        CURLOPT_FOLLOWLOCATION => true,
+                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                        CURLOPT_CUSTOMREQUEST => 'POST',
+                        CURLOPT_POSTFIELDS => http_build_query([
+                            'sender' => 'SoMs',
+                            'message' => $message,
+                            'recipients' => [$phone],
+                        ]),
+                    ]);
+
+                    $response = curl_exec($curl);
+
+                    curl_close($curl);
+
+                    // Print the API response
+                    echo $response;
+
+                    // Exit the loop
+                    break;
+                } else {
+                    // If phone number is not valid, provide error message with manual contact number
+                    echo "Invalid phone number. Please provide a valid phone number that starts with one of the following prefixes: " . implode(", ", $allowed_prefixes) . ". If you need help, please contact us at 0800 123 456.";
+                }
+            }
+        }
+    }
+}
+
+?>
